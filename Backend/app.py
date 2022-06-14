@@ -7,13 +7,9 @@ from base64 import encodebytes
 import torch.backends.cudnn as cudnn
 import numpy as np
 from PIL import Image
-import flask
 import torch
-import pafy
 import cv2 
 import io
-import time
-import simplejpeg
 from werkzeug.utils import secure_filename
 import os
 app = Flask(__name__)
@@ -23,14 +19,6 @@ cudnn.benchmark = True
 
 model = torch.hub.load('ultralytics/yolov5', 'custom', 'best.pt', force_reload=True)
 model.conf = 0.40
-
-url = ''
-stream_on = False
-total_frame = 0
-stat_dict = {
-    '0': 0,
-    '1': 0
-}
 
 def pred_analytics(df_param):
     df = df_param
@@ -48,87 +36,6 @@ def pred_analytics(df_param):
             pass
         print(zero_cnt,one_cnt)
     return zero_cnt, one_cnt
-
-
-def generate_frame_stream():
-    # try to find a way to get 720p instead of best maybe?
-    camera_source = pafy.new(url).getbest()
-    capture = cv2.VideoCapture(camera_source.url)  
-    
-    global stat_dict
-    global total_frame
-    while(stream_on):
-        start = time.time()
-        #Capture frame-by-frame
-        ret, raw_bgr_frame = capture.read()
-
-        #convert bgr to rgb
-        pred_frame_rgb = raw_bgr_frame[..., ::-1]
-
-        pred = model(pred_frame_rgb)
-        pred_frame = pred.render()[0]
-
-        #analytics dataframe
-        df = pred.pandas().xyxy[0]
-        zero_count, one_count = pred_analytics((df))
-        stat_dict['0'] += zero_count
-        stat_dict['1'] += one_count
-        total_frame += 1
-
-        # only predicted frame
-        frame_bytes = simplejpeg.encode_jpeg(pred_frame)
-        
-        yield(b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
-
-        # # original and predicted frames side by side horizontally
-        # combined_frame = np.concatenate((raw_rgb_frame, pred_frame), axis=1)
-        # combined_frame_bytes = cv2.imencode('.jpg', combined_frame)[1].tobytes()
-        # yield(b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + combined_frame_bytes + b'\r\n')
-
-        stop = time.time()
-        print("Frame process time: ", stop - start)
-    print('exiting loop')    
-    
-@app.route('/video_feed',methods=['GET'])
-def video_feed():
-    """
-    Video streaming route. Put this in the src attribute of an img tag.
-    URL argument must be included in query parameters
-    ie: http://127.0.0.1:5000/video_feed?url={some_youtube_link}
-    """
-    global url
-    global stream_on
-
-    stream_on = True
-    url = request.args.get("url")
-    
-    return Response(generate_frame_stream(), mimetype='multipart/x-mixed-replace; boundary=frame')
-
-
-@app.route('/analytics',methods=['GET'])
-def send_analytics():
-    res = {
-        'Mask': stat_dict['0'],
-        'No Mask': stat_dict['1'],
-        'Total Frame': total_frame
-        }
-
-    return jsonify(res)
-
-@app.route('/stop_feed',methods=['POST'])
-@cross_origin()
-def stop_feed():
-    global total_frame
-    global stat_dict
-    global stream_on
-    stream_on = False
-    stat_dict = {
-    '0': 0,
-    '1': 0
-    }
-    total_frame = 0
-    return Response('Stopped')
-
 
 @app.route('/video_test',methods=['POST'])
 @cross_origin()
@@ -196,7 +103,7 @@ def predict_img():
     Request format: 
         image: image.png
     """
-    start = time.time()
+
     # Getting the image
     imagefile_bytes = request.files['image'].read()
     print("image successfully uploaded")
