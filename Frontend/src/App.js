@@ -1,23 +1,21 @@
-import React from 'react';
-import Navbar from './components/Navbar';
-import HeroSection from './components/HeroSection';
-import Image from './components/Image';
-import Video from './components/Video';
-import Stream from './components/Stream';
 import './App.css';
-
 
 function App() {
   return (
-    <div className="app">
-      <Navbar/>
-      <div className="sections">
-        <HeroSection/>
-        <Image/>
-        <Video/>
-        <Stream/>
-        
-      </div>
+    <div className="App">
+      <header className="App-header">
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }
