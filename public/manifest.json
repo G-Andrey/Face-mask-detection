@@ -1,7 +1,8 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [],
+  "short_name": "Face Mask Demo",
+  "name": "Face Mask Detection Demo",
+  "icons": [
+  ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
