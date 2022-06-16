@@ -157,13 +157,19 @@ const Live = (props) => {
         console.log("model loaded")
       });
     });
-  }, [modelName]);
+  }, []);
 
   return (
+    <>
     <div className="Live" id='live' style={props.isModelLoading ? {marginTop:'40px'} : {marginTop:'20px'}}>
-      <div >
-        Test the model in your browser
+      <div className='title'>
+        Webcam
       </div>
+      <ul className="webcam-ul">
+        <li>
+          Use your device's webcam to test the model out live
+        </li>
+      </ul>
       <div className="content">
         <div className="main" >
           <video
@@ -211,10 +217,19 @@ const Live = (props) => {
           </button>
         </div>
       </div>
-      <div id='image' style={{marginTop:'100px'}} style={props.isModelLoading ? {marginTop:'100px'} : {marginTop:'80px'}}>
-        <img src='page-icon.svg' />
-      </div>
     </div>
+    <div className="image-container" id="image">
+      <div className='title'>
+        Image
+      </div>
+      <img 
+      src='page-icon.svg' 
+      width={360}
+      height={360}/>
+    </div>
+    <div className='rest'>
+    </div>
+    </>
 );
 
 };

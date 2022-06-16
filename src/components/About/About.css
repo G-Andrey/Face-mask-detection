@@ -11,7 +11,6 @@
 .title {
   text-align: left;
   margin-top: 20px;
-  margin-bottom: 20px;
   font-weight:900;
   font-size: 30px;
   font-style: italic;
@@ -23,7 +22,6 @@
 }
 
 .body {
-  height: 200px;
   font-size: 15px;
 }
 

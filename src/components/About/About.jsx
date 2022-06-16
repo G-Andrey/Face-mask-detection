@@ -19,7 +19,16 @@ const About = () => {
           The YoloV5s model was chosen as it strikes a good balance between size and predictive precision
         </li>
         <li>
-
+          This computer vision model was trained to detect and classify whether a human is wearing a mask or not with bounding box annotations
+        </li>
+        <li>
+        This computer vision model was trained to detect and classify whether a human is wearing a mask or not with bounding box annotations
+        </li>
+        <li>
+        This computer vision model was trained to detect and classify whether a human is wearing a mask or not with bounding box annotations
+        </li>
+        <li>
+        This computer vision model was trained to detect and classify whether a human is wearing a mask or not with bounding box annotations
         </li>
       </ul>
       <img />
