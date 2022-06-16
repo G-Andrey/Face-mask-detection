@@ -36,13 +36,13 @@ const Navbar = () => {
                     </div>
                     <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                         <li className='nav-item'>
-                            <a href='#about' className='nav-links' onClick={closeMobileMenu}>About</a>
+                            <a href='about' className='nav-links' onClick={closeMobileMenu}>About</a>
                         </li>
                         <li className='nav-item'>
-                            <a href='#live' className='nav-links' onClick={closeMobileMenu}>Live</a>
+                            <a href='live' className='nav-links' onClick={closeMobileMenu}>Live</a>
                         </li>
                         <li className='nav-item'>
-                            <a href='#image' className='nav-links' onClick={closeMobileMenu}>Image</a>
+                            <a href='image' className='nav-links' onClick={closeMobileMenu}>Image</a>
                         </li>    
                     </ul>
                 </div>
