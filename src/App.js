@@ -1,11 +1,15 @@
 import React from 'react';
 import Navbar from './components/Navbar/Navbar';
+import About from './components/About/About';
+import Live from './components/Live/Live';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
+    <div className="App" id="about">
       <Navbar />
+      <About/>
+      <Live />
     </div>
   );
 }
