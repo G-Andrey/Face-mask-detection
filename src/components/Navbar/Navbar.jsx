@@ -28,7 +28,7 @@ const Navbar = () => {
         <>
             <nav className="navbar">
                 <div className="navbar-container">
-                    <a href="#about" className="navbar-logo" onClick={closeMobileMenu}>
+                    <a href="/" className="navbar-logo" onClick={closeMobileMenu}>
                         <i className="fas fa-head-side-mask"></i>
                     </a>
                     <div className="menu-icon" onClick={handleClick}>
