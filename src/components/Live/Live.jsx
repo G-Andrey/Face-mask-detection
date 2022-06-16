@@ -6,7 +6,7 @@ import "./Live.css";
 
 tf.enableProdMode();
 
-const Live = () => {
+const Live = (props) => {
   const [model, setModel] = useState(null);
   const [webcam, setWebcam] = useState("close");
   const [lcimage, setLCImage] = useState("close");
@@ -138,6 +138,7 @@ const Live = () => {
   };
 
   useEffect(() => {
+    props.setModelLoadingOn();
     setLoading({ state: "loading", progress: 0 });
     tf.loadGraphModel(`${window.location.origin}/${modelName}_web_model/model.json`, {
       onProgress: (fractions) => {
@@ -151,6 +152,7 @@ const Live = () => {
         tf.dispose(dummyInput);
 
         setModel(yolov5);
+        props.setModelLoadingOff();
         setLoading({ state: "ready", progress: 1 });
         console.log("model loaded")
       });
@@ -158,12 +160,12 @@ const Live = () => {
   }, [modelName]);
 
   return (
-    <div className="Live" id="live">
-      <div>
+    <div className="Live" id='live' style={props.isModelLoading ? {marginTop:'40px'} : {marginTop:'20px'}}>
+      <div >
         Test the model in your browser
       </div>
       <div className="content">
-        <div className="main">
+        <div className="main" >
           <video
             style={{ display: webcam === "open" ? "block" : "none" }}
             autoPlay
@@ -208,6 +210,9 @@ const Live = () => {
             {webcam === "open" ? "Close" : "Activate"} Webcam
           </button>
         </div>
+      </div>
+      <div id='image' style={{marginTop:'100px'}} style={props.isModelLoading ? {marginTop:'100px'} : {marginTop:'80px'}}>
+        <img src='page-icon.svg' />
       </div>
     </div>
 );

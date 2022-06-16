@@ -1,7 +1,6 @@
 .Live {
   display: block;
   height: min-content;
-  margin-top: 20px;
   background-color: #2d3748;
 }
 
@@ -21,7 +20,8 @@
 .main-video {
   margin: 0;
   width: 100%;
-  border: 2px solid black; 
+  border: 1px solid #cbccd0; 
+  border-radius: 10px;
 }
 
 .main-canvas {
@@ -31,7 +31,8 @@
   margin: 0;
   width: 100%;
   height: 100%;
-  border: 2px solid black;
+  border: 1px solid #cbccd0;
+  border-radius: 10px;
 }
 
 .temp-img {

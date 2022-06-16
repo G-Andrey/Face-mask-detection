@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import './Navbar.css';
 
-const Navbar = () => {
+const Navbar = (props) => {
     const [click,setClick] = useState(false);
     const [button,setButton] = useState(true);
     
@@ -36,16 +36,25 @@ const Navbar = () => {
                     </div>
                     <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                         <li className='nav-item'>
-                            <a href='about' className='nav-links' onClick={closeMobileMenu}>About</a>
+                            <a href='/' className='nav-links' onClick={closeMobileMenu}>About</a>
                         </li>
                         <li className='nav-item'>
-                            <a href='live' className='nav-links' onClick={closeMobileMenu}>Live</a>
+                            <a href='/model' className='nav-links' onClick={closeMobileMenu}>Live</a>
                         </li>
                         <li className='nav-item'>
-                            <a href='image' className='nav-links' onClick={closeMobileMenu}>Image</a>
+                            <a href='/model#image' className='nav-links' onClick={closeMobileMenu}>Image</a>
                         </li>    
                     </ul>
                 </div>
+                {
+                    props.isModelLoading ?
+                    <div className="loader-container">
+                        
+                        <p>Loading model</p>
+                    </div>
+                    :
+                    null     
+                }
             </nav>
         </>
     )

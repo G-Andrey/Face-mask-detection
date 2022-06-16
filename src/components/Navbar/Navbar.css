@@ -1,14 +1,13 @@
 .navbar {
     background: #1d2330;
     height: 80px;
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
     position: sticky;
     top: 0;
-    z-index: 999;
-    
+    z-index: 999;  
   }
   
   .navbar-container {
@@ -158,3 +157,14 @@
       transition: 250ms;
     }
   }
+
+.loader-container {
+  position: sticky;
+  width: 100%;
+  height: min-content;
+  background-color: #aaabad;
+  text-align: center;
+  color: white;
+  padding: 5px;
+  font-size: 15px;
+}
