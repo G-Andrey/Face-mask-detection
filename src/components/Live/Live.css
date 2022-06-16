@@ -94,9 +94,8 @@ button[disabled]{
   margin-right: auto;
   display: block;
   border-radius: 15px;
-  padding-bottom: 40px;
 }
 
 .rest{
-  height: 40px;
+  height: 60px;
 }

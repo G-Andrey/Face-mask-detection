@@ -18,6 +18,7 @@ const Live = (props) => {
   const imageRef = useRef(null);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+  const imgcanvasRef = useRef(null);
 
   const openWebcam = () => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -167,7 +168,7 @@ const Live = (props) => {
       </div>
       <ul className="webcam-ul">
         <li>
-          Use your device's webcam to test the model out live
+          Use your device's webcam to test the model out
         </li>
       </ul>
       <div className="content">
@@ -222,10 +223,47 @@ const Live = (props) => {
       <div className='title'>
         Image
       </div>
-      <img 
-      src='page-icon.svg' 
-      width={360}
-      height={360}/>
+      <ul className="webcam-ul">
+        <li>
+          Test the model out on an uploaded image
+        </li>
+      </ul>
+      <div className='content'>
+          <img
+            style={{ display: webcam === "open" ? "block" : "none" }}
+            autoPlay
+            playsInline
+            muted
+            ref={imageRef}
+            className="main-video"
+          />
+          <canvas
+            width={640}
+            height={360}
+            style={{
+              display: webcam === "open" ? "block" : "none",
+            }}
+            ref={imgcanvasRef}
+            className="main-canvas"
+          />
+          <img
+            width={360}
+            height={360}
+            className="temp-img"
+            style={{
+              display: webcam === "open" ? "none" : "block",
+            }}
+            src='page-icon.svg'
+          />
+          <div className="btnWrapper">
+            <button
+              className={webcam === "open" ? "active" : "nonActive"}
+              disabled={loading.state === "ready" ? false : true}
+            >
+              Upload Image
+            </button>
+          </div>
+      </div>
     </div>
     <div className='rest'>
     </div>
