@@ -48,12 +48,11 @@ const Navbar = (props) => {
                 </div>
                 {
                     props.isModelLoading ?
-                    <div className="loader-container">
-                        
+                    <div className="loader-container" >
                         <p>Loading model</p>
                     </div>
                     :
-                    null     
+                    null
                 }
             </nav>
         </>

@@ -1,7 +1,8 @@
 .navbar {
     background: #1d2330;
-    height: 80px;
-    display: block;
+    height: min-content;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
@@ -159,12 +160,25 @@
   }
 
 .loader-container {
-  position: sticky;
+  position: absolute;
+  top: 80px;
   width: 100%;
   height: min-content;
-  background-color: #aaabad;
+  background: linear-gradient(14deg, rgba(140,140,140,1) 50%, rgba(176,206,241,1) 100%);
   text-align: center;
   color: white;
-  padding: 5px;
   font-size: 15px;
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-container p{
+  animation: blinker 2s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
