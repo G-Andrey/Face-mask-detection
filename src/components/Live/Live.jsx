@@ -324,6 +324,9 @@ const Live = (props) => {
               className="nonActive"
               disabled={loading.state === "ready" ? false : true}
               onClick={() => {
+                if (webcam === "open"){
+                  closeWebcam()
+                }
                 inputImage.current.click();
               }}
             >
