@@ -8,6 +8,7 @@
   background: linear-gradient(14deg, rgba(73,74,74,1) 18%, rgba(176,206,241,1) 100%);
   border-radius: 10px;
   margin-bottom: 40px;
+  overflow: hidden;
 }
 
 .content {
@@ -94,6 +95,7 @@ button[disabled]{
   margin-right: auto;
   display: block;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .main-img {
