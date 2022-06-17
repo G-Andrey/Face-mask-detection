@@ -6,7 +6,7 @@
   margin-left: auto;
   margin-right: auto;
   background: linear-gradient(14deg, rgba(73,74,74,1) 18%, rgba(176,206,241,1) 100%);
-  border-radius: 15px;
+  border-radius: 10px;
   margin-bottom: 40px;
 }
 
@@ -49,7 +49,7 @@
 
 .btnWrapper {
   padding-bottom: 20px;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 button {
@@ -93,7 +93,7 @@ button[disabled]{
   margin-left: auto;
   margin-right: auto;
   display: block;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 .main-img {

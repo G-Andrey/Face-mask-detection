@@ -39,7 +39,7 @@ const Navbar = (props) => {
                             <a href='/' className='nav-links' onClick={closeMobileMenu}>About</a>
                         </li>
                         <li className='nav-item'>
-                            <a href='/model' className='nav-links' onClick={closeMobileMenu}>Live</a>
+                            <a href='/model#' className='nav-links' onClick={closeMobileMenu}>Live</a>
                         </li>
                         <li className='nav-item'>
                             <a href='/model#image' className='nav-links' onClick={closeMobileMenu}>Image</a>

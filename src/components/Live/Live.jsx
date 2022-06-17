@@ -209,13 +209,13 @@ const Live = (props) => {
 
   return (
     <>
-    <div className="Live" id='live' style={props.isModelLoading ? {marginTop:'40px'} : {marginTop:'20px'}}>
-      <div className='title'>
+    <div className="Live" style={props.isModelLoading ? {marginTop:'40px'} : {marginTop:'20px'}}>
+      <div className='title' id='live'>
         Webcam
       </div>
       <ul className="webcam-ul">
         <li>
-          Use your device's webcam to test the model out
+          Test the model with your device's webcam
         </li>
       </ul>
       <div className="content">
@@ -274,6 +274,9 @@ const Live = (props) => {
         <li>
           Test the model out on an image from your system
         </li>
+        <li>
+          <em>Webcam must be closed when predicting on an image</em>
+        </li>
       </ul>
       <div className='content'>
           <img
@@ -307,7 +310,7 @@ const Live = (props) => {
               style={{ display: "none" }}
               onChange={(e) => {
                 console.log('image opened')
-                if (e.target.files[0] !== null) {
+                if (e.target.files[0] !== null && e.target.files.length !== 0) {
                   const f = e.target.files[0];
                   const src = window.URL.createObjectURL(f);
                   imageRef.current.src = src;
