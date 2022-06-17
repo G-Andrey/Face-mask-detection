@@ -9,11 +9,11 @@ tf.enableProdMode();
 const Live = (props) => {
   const [model, setModel] = useState(null);
   const [webcam, setWebcam] = useState("close");
+  const [image, setImage] = useState("close");
   const [lcimage, setLCImage] = useState("close");
   const [loading, setLoading] = useState({ state: "loading", progress: 0 });
   const [aniId, setAniId] = useState(null);
   const threshold= 0.25;
-  const [modelName, setModelName] = useState("face-mask-model");
   const inputImage = useRef(null);
   const imageRef = useRef(null);
   const videoRef = useRef(null);
@@ -50,6 +50,13 @@ const Live = (props) => {
     } else alert("Please open Webcam first!");
   };
 
+  const closeImage = () => {
+    if (imageRef.current.src) {
+      imageRef.current.src = null;
+      setImage("close");
+    } else alert("No Image to close");
+  }
+
   const renderPrediction = (boxes_data, scores_data, classes_data) => {
     const ctx = canvasRef.current.getContext("2d");
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clean canvas
@@ -68,6 +75,46 @@ const Live = (props) => {
         x2 *= canvasRef.current.width;
         y1 *= canvasRef.current.height;
         y2 *= canvasRef.current.height;
+        const width = x2 - x1;
+        const height = y2 - y1;
+        const color = (klass == 'no_mask') ? "#fc031c" : "#03fc0b";
+
+        // Draw the bounding box.
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2;
+        ctx.strokeRect(x1, y1, width, height);
+
+        // Draw the label background.
+        ctx.fillStyle = color;
+        const textWidth = ctx.measureText(klass + " - " + score + "%").width;
+        const textHeight = parseInt(font, 10); // base 10
+        ctx.fillRect(x1 - 1, y1 - (textHeight + 2), textWidth + 2, textHeight + 2);
+
+        // Draw labels
+        ctx.fillStyle = "#ffffff";
+        ctx.fillText(klass + " - " + score + "%", x1 - 1, y1 - (textHeight + 2));
+      }
+    }
+  };
+
+  const renderPredictionImage = (boxes_data, scores_data, classes_data) => {
+    const ctx = imgcanvasRef.current.getContext("2d");
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // Clean canvas
+
+    const font = "16px sans-serif";
+    ctx.font = font;
+    ctx.textBaseline = "top";
+
+    for (let i = 0; i < scores_data.length; ++i) {
+      if (scores_data[i] > threshold) {
+        const klass = labels[classes_data[i]];
+        const score = (scores_data[i] * 100).toFixed(1);
+
+        let [x1, y1, x2, y2] = boxes_data.slice(i * 4, (i + 1) * 4);
+        x1 *= imgcanvasRef.current.width;
+        x2 *= imgcanvasRef.current.width;
+        y1 *= imgcanvasRef.current.height;
+        y2 *= imgcanvasRef.current.height;
         const width = x2 - x1;
         const height = y2 - y1;
         const color = (klass == 'no_mask') ? "#fc031c" : "#03fc0b";
@@ -132,7 +179,7 @@ const Live = (props) => {
       const scores_data = scores.dataSync();
       const classes_data = classes.dataSync();
       
-      renderPrediction(boxes_data, scores_data, classes_data);
+      renderPredictionImage(boxes_data, scores_data, classes_data);
       tf.dispose(res);
     });
     tf.engine().endScope();
@@ -141,7 +188,7 @@ const Live = (props) => {
   useEffect(() => {
     props.setModelLoadingOn();
     setLoading({ state: "loading", progress: 0 });
-    tf.loadGraphModel(`${window.location.origin}/${modelName}_web_model/model.json`, {
+    tf.loadGraphModel(`${window.location.origin}/face-mask-model_web_model/model.json`, {
       onProgress: (fractions) => {
         setLoading({ state: "loading", progress: fractions });
       },
@@ -225,43 +272,78 @@ const Live = (props) => {
       </div>
       <ul className="webcam-ul">
         <li>
-          Test the model out on an uploaded image
+          Test the model out on an image from your system
         </li>
       </ul>
       <div className='content'>
           <img
-            style={{ display: webcam === "open" ? "block" : "none" }}
-            autoPlay
-            playsInline
-            muted
+            style={{ display: image === "open" ? "block" : "none" }}
             ref={imageRef}
-            className="main-video"
+            className="main-img"
           />
           <canvas
-            width={640}
-            height={360}
             style={{
-              display: webcam === "open" ? "block" : "none",
+              display: image === "open" ? "block" : "none",
             }}
+            width={360}
+            height={360}
             ref={imgcanvasRef}
-            className="main-canvas"
+            className="main-canvas-img"
           />
           <img
             width={360}
             height={360}
             className="temp-img"
             style={{
-              display: webcam === "open" ? "none" : "block",
+              display: image === "open" ? "none" : "block",
             }}
-            src='page-icon.svg'
+            src='temp-picture-img.jpg'
           />
           <div className="btnWrapper">
+            <input
+              type="file"
+              ref={inputImage}
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={(e) => {
+                console.log('image opened')
+                if (e.target.files[0] !== null) {
+                  const f = e.target.files[0];
+                  const src = window.URL.createObjectURL(f);
+                  imageRef.current.src = src;
+                  setImage("open");
+                  console.log(image)
+                  imageRef.current.onload = () => {
+                    detectImage();
+                    window.URL.revokeObjectURL(src);
+                  };
+                }
+              }}
+            />
             <button
-              className={webcam === "open" ? "active" : "nonActive"}
+              className="nonActive"
               disabled={loading.state === "ready" ? false : true}
+              onClick={() => {
+                inputImage.current.click();
+              }}
             >
-              Upload Image
+              {image === "open" ? "New" : "Upload"} Image
             </button>
+            {
+              image === "open" ?
+              <button
+                className="closeImage"
+                onClick={
+                  () => {
+                    closeImage()
+                  }
+                }
+              >
+                Close Image
+              </button>
+              :
+              null
+            }
           </div>
       </div>
     </div>
