@@ -1,4 +1,5 @@
 import React, {useState,useEffect} from 'react';
+import { Link } from "react-router-dom";
 import './Navbar.css';
 
 const Navbar = (props) => {
@@ -28,21 +29,21 @@ const Navbar = (props) => {
         <>
             <nav className="navbar">
                 <div className="navbar-container">
-                    <a href="/" className="navbar-logo" onClick={closeMobileMenu}>
+                    <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
                         <i className="fas fa-head-side-mask"></i>
-                    </a>
+                    </Link>
                     <div className="menu-icon" onClick={handleClick}>
                         <i className={click ? 'fas fa-times' : 'fas fa-bars'}/> 
                     </div>
                     <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                         <li className='nav-item'>
-                            <a href='/' className='nav-links' onClick={closeMobileMenu}>About</a>
+                            <Link to='/' className='nav-links' onClick={closeMobileMenu}>About</Link>
                         </li>
                         <li className='nav-item'>
-                            <a href='/model#' className='nav-links' onClick={closeMobileMenu}>Live</a>
+                            <Link to='/model#' className='nav-links' onClick={closeMobileMenu}>Live</Link>
                         </li>
                         <li className='nav-item'>
-                            <a href='/model#image' className='nav-links' onClick={closeMobileMenu}>Image</a>
+                            <Link to='/model#image' className='nav-links' onClick={closeMobileMenu}>Image</Link>
                         </li>    
                     </ul>
                 </div>

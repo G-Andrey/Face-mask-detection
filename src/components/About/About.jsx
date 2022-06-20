@@ -1,4 +1,5 @@
 import './About.css'
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -35,11 +36,11 @@ const About = () => {
         </li>
       </ul>
       <div className='about-btn-container'>
-        <a href="/model">
+        <Link to="/model">
           <button className="about-btn">
             Test the model
           </button>          
-        </a>
+        </Link>
       </div>
     </div>
     </div>
