@@ -10,7 +10,6 @@ const Live = (props) => {
   const [model, setModel] = useState(null);
   const [webcam, setWebcam] = useState("close");
   const [image, setImage] = useState("close");
-  const [lcimage, setLCImage] = useState("close");
   const [loading, setLoading] = useState({ state: "loading", progress: 0 });
   const [aniId, setAniId] = useState(null);
   const threshold= 0.25;
