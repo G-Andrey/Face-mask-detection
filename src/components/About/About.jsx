@@ -5,7 +5,7 @@ const About = () => {
   return (
     <div style={{height:'100vh', backgroundColor:'#2d3748'}}>
     <div className="hero-container">
-      <video src='/videos/video-2.mp4' autoPlay loop muted className='hero-video'/>
+      <video src='videos/video-2.mp4' autoPlay loop muted className='hero-video'/>
     </div>
     <div className="about-container" >
       <div className="title">

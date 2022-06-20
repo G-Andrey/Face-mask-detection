@@ -187,7 +187,7 @@ const Live = (props) => {
   useEffect(() => {
     props.setModelLoadingOn();
     setLoading({ state: "loading", progress: 0 });
-    tf.loadGraphModel(`${window.location.origin}/face-mask-model_web_model/model.json`, {
+    tf.loadGraphModel(`face-mask-model_web_model/model.json`, {
       onProgress: (fractions) => {
         setLoading({ state: "loading", progress: fractions });
       },
