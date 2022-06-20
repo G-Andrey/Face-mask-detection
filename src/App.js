@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import About from './components/About/About';
 import Live from './components/Live/Live';
-import { HashRouter, Route, Routes } from "react-router-dom";
+import {Route, Routes } from "react-router-dom";
 import './App.css';
 
 const App = () => {
@@ -17,7 +17,6 @@ const App = () => {
   };
 
   return (
-    <HashRouter>
       <div className="App" id="about">
         <Navbar isModelLoading={isModelLoading}/>
         <Routes>
@@ -25,7 +24,6 @@ const App = () => {
           <Route path='/model' element={<Live isModelLoading={isModelLoading} setModelLoadingOn={setModelLoadingOn} setModelLoadingOff={setModelLoadingOff} />}/>
         </Routes>
       </div>
-    </HashRouter>
   );
 }
 
