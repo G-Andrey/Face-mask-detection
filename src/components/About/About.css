@@ -1,5 +1,5 @@
 .about-container {
-  width: 70%;
+  width: 60%;
   background: linear-gradient(14deg, rgba(73,74,74,.9) 18%, rgba(176,206,241,.9) 100%);
   height: min-content;
   margin-left: auto;
@@ -7,9 +7,10 @@
   display: block;
   border-radius: 10px;
   position: absolute;
-  top: 50%;
+  top: 0%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0%);
+  margin-top: 120px;
 }
 
 .hero-container {
