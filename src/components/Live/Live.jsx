@@ -10,6 +10,8 @@ const Live = (props) => {
   const [model, setModel] = useState(null);
   const [webcam, setWebcam] = useState("close");
   const [image, setImage] = useState("close");
+  const [canvasWidth, setCanvasWidth] = useState(0);
+  const [canvasHeight, setCanvasHeight] = useState(0);
   const [loading, setLoading] = useState({ state: "loading", progress: 0 });
   const [aniId, setAniId] = useState(null);
   const threshold= 0.25;
@@ -287,8 +289,8 @@ const Live = (props) => {
             style={{
               display: image === "open" ? "block" : "none",
             }}
-            width={360}
-            height={360}
+            width={canvasWidth}
+            height={canvasHeight}
             ref={imgcanvasRef}
             className="main-canvas-img"
           />
@@ -314,8 +316,9 @@ const Live = (props) => {
                   const src = window.URL.createObjectURL(f);
                   imageRef.current.src = src;
                   setImage("open");
-                  console.log(image)
                   imageRef.current.onload = () => {
+                    setCanvasWidth(imageRef.current.width);
+                    setCanvasHeight(imageRef.current.height);
                     detectImage();
                     window.URL.revokeObjectURL(src);
                   };
