@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/Face-mask-detection/static/css/main.4f96e3dc.chunk.css",
-    "main.js": "/Face-mask-detection/static/js/main.80cfe448.chunk.js",
-    "main.js.map": "/Face-mask-detection/static/js/main.80cfe448.chunk.js.map",
+    "main.css": "/Face-mask-detection/static/css/main.fb309448.chunk.css",
+    "main.js": "/Face-mask-detection/static/js/main.127a8f58.chunk.js",
+    "main.js.map": "/Face-mask-detection/static/js/main.127a8f58.chunk.js.map",
     "runtime-main.js": "/Face-mask-detection/static/js/runtime-main.1268c6ce.js",
     "runtime-main.js.map": "/Face-mask-detection/static/js/runtime-main.1268c6ce.js.map",
-    "static/js/2.420cb5c7.chunk.js": "/Face-mask-detection/static/js/2.420cb5c7.chunk.js",
-    "static/js/2.420cb5c7.chunk.js.map": "/Face-mask-detection/static/js/2.420cb5c7.chunk.js.map",
+    "static/js/2.d1f31aa1.chunk.js": "/Face-mask-detection/static/js/2.d1f31aa1.chunk.js",
+    "static/js/2.d1f31aa1.chunk.js.map": "/Face-mask-detection/static/js/2.d1f31aa1.chunk.js.map",
     "index.html": "/Face-mask-detection/index.html",
-    "static/css/main.4f96e3dc.chunk.css.map": "/Face-mask-detection/static/css/main.4f96e3dc.chunk.css.map",
-    "static/js/2.420cb5c7.chunk.js.LICENSE.txt": "/Face-mask-detection/static/js/2.420cb5c7.chunk.js.LICENSE.txt"
+    "static/css/main.fb309448.chunk.css.map": "/Face-mask-detection/static/css/main.fb309448.chunk.css.map",
+    "static/js/2.d1f31aa1.chunk.js.LICENSE.txt": "/Face-mask-detection/static/js/2.d1f31aa1.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.1268c6ce.js",
-    "static/js/2.420cb5c7.chunk.js",
-    "static/css/main.4f96e3dc.chunk.css",
-    "static/js/main.80cfe448.chunk.js"
+    "static/js/2.d1f31aa1.chunk.js",
+    "static/css/main.fb309448.chunk.css",
+    "static/js/main.127a8f58.chunk.js"
   ]
 }
