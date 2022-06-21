@@ -1,5 +1,6 @@
 import React, {useState,useEffect} from 'react';
 import { Link } from "react-router-dom";
+import { HashLink } from 'react-router-hash-link';
 import './Navbar.css';
 
 const Navbar = (props) => {
@@ -43,7 +44,7 @@ const Navbar = (props) => {
                             <Link to='/model#' className='nav-links' onClick={closeMobileMenu}>Live</Link>
                         </li>
                         <li className='nav-item'>
-                            <Link to='/model#image' className='nav-links' onClick={closeMobileMenu}>Image</Link>
+                            <HashLink to='/model#image' className='nav-links' onClick={closeMobileMenu}>Image</HashLink>
                         </li>    
                     </ul>
                 </div>
