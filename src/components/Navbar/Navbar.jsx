@@ -41,7 +41,7 @@ const Navbar = (props) => {
                             <Link to='/' className='nav-links' onClick={closeMobileMenu}>About</Link>
                         </li>
                         <li className='nav-item'>
-                            <Link to='/model#' className='nav-links' onClick={closeMobileMenu}>Live</Link>
+                            <HashLink to='/model#' className='nav-links' onClick={closeMobileMenu}>Live</HashLink>
                         </li>
                         <li className='nav-item'>
                             <HashLink to='/model#image' className='nav-links' onClick={closeMobileMenu}>Image</HashLink>
