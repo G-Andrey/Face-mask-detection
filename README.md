@@ -7,4 +7,4 @@
 2. Deploy the model via a webapp where users can test the model with their own webcam and with uploaded images.
 
 ## Webapp Demo 📽️
-![](https://github.com/G-Andrey/Gif-Storage/blob/main/FaceMask/FaceMaskDemo.gif)
+![](https://github.com/G-Andrey/Gif-Storage/blob/main/FaceMask/FaceMaskDemoHQ.gif)
